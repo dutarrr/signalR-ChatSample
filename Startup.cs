@@ -49,7 +49,7 @@ namespace signalR_ChatSample
             app.UseEndpoints(endpoints =>
             {
                  endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
-                endpoints.MapHub<ChatHub>("/chathub");
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }
