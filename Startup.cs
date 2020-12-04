@@ -48,7 +48,7 @@ namespace signalR_ChatSample
 
             app.UseEndpoints(endpoints =>
             {
-                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
                 endpoints.MapHub<ChatHub>("/chatHub");
             });
         }

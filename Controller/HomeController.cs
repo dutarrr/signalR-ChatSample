@@ -10,7 +10,6 @@ namespace SignalRChat.Controllers
     {
         public ActionResult Index()
         {
-            // Add action logic here
             return View();
         }
     }
