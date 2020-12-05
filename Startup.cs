@@ -50,6 +50,8 @@ namespace signalR_ChatSample
             {
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
                 endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<ProductHub>("/productHub");
+
             });
         }
     }
