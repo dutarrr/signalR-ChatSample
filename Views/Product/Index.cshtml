@@ -27,3 +27,19 @@
 
     </tbody>
 </table>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+
+<script>
+    var connection = new signalR.HubConnectionBuilder().withUrl("/productHub").build();
+
+    connection.on("ReceiveProductMessage", function (message) {
+        console.log(message);
+    });
+
+    connection.start().then(function () {
+        console.log("Bağlantı başarılı");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+</script>

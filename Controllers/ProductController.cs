@@ -1,8 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using SignalRChat.Hubs;
 using SignalRChat.Models;
 
 
@@ -10,6 +9,13 @@ namespace SignalRChat.Controllers
 {
     public class ProductController : Controller
     {
+        private readonly IHubContext<ProductHub> _hubContext;
+
+        public ProductController(IHubContext<ProductHub> hubContext)
+        {
+            _hubContext = hubContext;
+        }
+
         public ActionResult Index()
         {
             return View(MemoryCache.Products);
@@ -21,9 +27,12 @@ namespace SignalRChat.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Product product)
+        public async Task<IActionResult> Add(Product product)
         {
             MemoryCache.Products.Add(product);
+
+            await _hubContext.Clients.All.SendAsync("ReceiveProductMessage", $"Hello from Controller. Product size is : {MemoryCache.Products.Count}");
+
             return View();
         }
     }
