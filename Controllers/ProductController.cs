@@ -31,7 +31,7 @@ namespace SignalRChat.Controllers
         {
             MemoryCache.Products.Add(product);
 
-            await _hubContext.Clients.All.SendAsync("ReceiveProductMessage", $"Hello from Controller. Product size is : {MemoryCache.Products.Count}");
+            await _hubContext.Clients.All.SendAsync("ReceiveProductMessage", product);
 
             return View();
         }
