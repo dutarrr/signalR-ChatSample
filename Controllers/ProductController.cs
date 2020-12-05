@@ -23,7 +23,7 @@ namespace SignalRChat.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            return View(MemoryCache.Products);
         }
 
         [HttpPost]
@@ -33,7 +33,7 @@ namespace SignalRChat.Controllers
 
             await _hubContext.Clients.All.SendAsync("ReceiveProductMessage", product);
 
-            return View();
+            return View(MemoryCache.Products);
         }
     }
 }
