@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<table class="table table-dark">
+<table class="table table-dark" id="productTable">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -35,11 +35,16 @@
 
     connection.on("ReceiveProductMessage", function (product) {
         console.log(product);
+
+        $('#productTable tr:last').after('<tr><th scope="row">' + product.id + '</th><td>' + product.name + '</td><td>' + product.price + '</td></tr>');
+
     });
 
     connection.start().then(function () {
         console.log("Bağlantı başarılı");
     }).catch(function (err) {
-        return console.error(err.toString());
+        console.log("Bağlatı sırasında hata oluştu!");
+        console.error(err.toString());
     });
+    
 </script>
