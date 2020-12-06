@@ -1,5 +1,4 @@
 
-
 namespace SignalRChat.Models
 {
     public class Product

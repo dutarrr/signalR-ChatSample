@@ -6,6 +6,9 @@ namespace SignalRChat.Hubs
 {
     public class ProductHub : Hub
     {
-        
+        public override Task OnConnectedAsync()
+        {
+            return base.OnConnectedAsync();
+        }
     }
 }
